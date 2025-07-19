@@ -34,7 +34,7 @@ export default function LanguageSelector() {
       </button>
       
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-10">
+        <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg z-50">
           <div className="py-1">
             {locales.map((loc) => (
               <button
