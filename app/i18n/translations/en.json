@@ -1,0 +1,26 @@
+{
+  "home": {
+    "title": "Harshad Swaminarayan Mandir",
+    "subtitle": "A sacred place for spiritual growth, community, and devotion",
+    "welcome": "Welcome to Our Temple",
+    "description": "Harshad Swaminarayan Mandir is a place of worship, community, and spiritual growth. Our temple serves as a center for Hindu religious activities, cultural events, and educational programs for devotees of all ages.",
+    "learnMore": "Learn More About Us",
+    "gallery": "Temple Gallery",
+    "viewGallery": "View Full Gallery",
+    "events": "Upcoming Events",
+    "viewEvents": "View All Events",
+    "noEvents": "No upcoming events at this time. Please check back later."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "events": "Events",
+    "gallery": "Gallery",
+    "contact": "Contact"
+  },
+  "language": {
+    "select": "Select Language",
+    "en": "English",
+    "gu": "ગુજરાતી"
+  }
+}

@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Harshad Swaminarayan Mandir Website
+
+This is a website for Harshad Swaminarayan Mandir built with Next.js. The site includes information about the temple, events, a photo gallery, and contact information.
+
+## Features
+
+- Home page with temple introduction, image carousel, and upcoming events
+- About page with temple history, mission, and leadership information
+- Events listing with filtering by category
+- Event detail pages with comprehensive information
+- Photo gallery with filtering and lightbox view
+- Contact page with temple information and contact form
+
+## Project Structure
+
+```
+harshad_swaminarayan_mandir/
+├── pages/
+│   ├── index.tsx           # Home page
+│   ├── about.tsx           # About the temple
+│   ├── events/
+│   │   ├── index.tsx       # List all events
+│   │   └── [slug].tsx      # Event detail page
+│   ├── gallery.tsx         # Image gallery
+│   ├── contact.tsx         # Contact information
+│   └── 404.tsx             # Custom 404 page
+├── components/
+│   ├── Navbar.tsx          # Site navigation
+│   ├── Footer.tsx          # Site footer
+│   ├── EventCard.tsx       # Event display card
+│   └── ImageCarousel.tsx   # Image carousel component
+├── public/
+│   ├── images/             # Site images
+│   │   ├── events/         # Event images
+│   │   ├── gallery/        # Gallery images
+│   │   └── leaders/        # Leadership photos
+│   └── temple-logo.png     # Temple logo
+```
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Image Placeholders
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The site is set up with placeholder references for images. Before deploying, you should:
 
-## Learn More
+1. Replace `public/temple-logo.png` with your actual temple logo
+2. Add temple images to the following directories:
+   - `public/images/events/` - Images for events
+   - `public/images/gallery/` - Images for the gallery
+   - `public/images/leaders/` - Photos of temple leadership
 
-To learn more about Next.js, take a look at the following resources:
+## Backend Integration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The site is currently using mock data for events and gallery images. To connect to a real backend:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Update the `getStaticProps` functions in the page components to fetch data from your API
+2. Implement form submission handling in the contact page
 
-## Deploy on Vercel
+## Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Colors: The site uses orange as the primary color. You can modify this in the component files.
+- Content: Update the text content in each page to match your temple's information.
+- Layout: Adjust the layout and design as needed for your specific requirements.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new) from the creators of Next.js.
