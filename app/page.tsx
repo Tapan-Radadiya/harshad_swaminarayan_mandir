@@ -9,6 +9,7 @@ import ImageCarousel from '../components/ImageCarousel';
 import EventCard from '../components/EventCard';
 import { useLanguage } from './context/LanguageContext';
 import axiosInstance from '@/assets/config/axios.config';
+import { carouselQS } from '@/assets/queryString/carousel.qs';
 
 // Mock data - in a real app, this would come from an API
 interface Event {
@@ -63,7 +64,7 @@ export default function Home() {
 
 
   const fetchCarouselData = async () => {
-    const data = await axiosInstance.get("/image-managers?filters[image_type][$eq]=carousel&filters[is_active][$eq]=true&sort=priority:asc&fields[0]=id&fields[1]=priority&populate[images][fields][0]=url&populate[images][fields][1]=name&populate[gallery_group][fields][0]=group_key")
+    const data = await axiosInstance.get(`/image-managers?${carouselQS()}`)
     const formatedData = formatStrapiResponse(data.data.data)
     setcarouselImages(formatedData)
   }
@@ -81,7 +82,6 @@ export default function Home() {
       return []
     }
   }
-
 
   return (
     <>

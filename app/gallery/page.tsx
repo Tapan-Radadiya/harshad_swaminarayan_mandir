@@ -1,110 +1,57 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import axiosInstance from '@/assets/config/axios.config';
+import { galleryAllimagesQS, galleryGroupQS } from '@/assets/queryString/galleryGroup.qs';
+import ImageCarousel from '@/components/ImageCarousel';
 
 // Mock data - in a real app, this would come from an API
 interface GalleryImage {
   id: string;
   src: string;
-  alt: string;
+  title: string;
   category: string;
 }
 
 export default function Gallery() {
-  const [filter, setFilter] = useState('all');
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  
-  // In a real app, fetch this data from an API
-  const images: GalleryImage[] = [
-    {
-      id: '1',
-      src: '/images/gallery/temple1.jpg',
-      alt: 'Temple Front View',
-      category: 'architecture',
-    },
-    {
-      id: '2',
-      src: '/images/gallery/deity1.jpg',
-      alt: 'Main Shrine',
-      category: 'deities',
-    },
-    {
-      id: '3',
-      src: '/images/gallery/celebration1.jpg',
-      alt: 'Diwali Celebration',
-      category: 'celebrations',
-    },
-    {
-      id: '4',
-      src: '/images/gallery/temple2.jpg',
-      alt: 'Temple Interior',
-      category: 'architecture',
-    },
-    {
-      id: '5',
-      src: '/images/gallery/deity2.jpg',
-      alt: 'Lord Swaminarayan Idol',
-      category: 'deities',
-    },
-    {
-      id: '6',
-      src: '/images/gallery/celebration2.jpg',
-      alt: 'Holi Festival',
-      category: 'celebrations',
-    },
-    {
-      id: '7',
-      src: '/images/gallery/temple3.jpg',
-      alt: 'Temple at Night',
-      category: 'architecture',
-    },
-    {
-      id: '8',
-      src: '/images/gallery/deity3.jpg',
-      alt: 'Radha Krishna Shrine',
-      category: 'deities',
-    },
-    {
-      id: '9',
-      src: '/images/gallery/celebration3.jpg',
-      alt: 'Navratri Garba',
-      category: 'celebrations',
-    },
-    {
-      id: '10',
-      src: '/images/gallery/temple4.jpg',
-      alt: 'Temple Garden',
-      category: 'architecture',
-    },
-    {
-      id: '11',
-      src: '/images/gallery/deity4.jpg',
-      alt: 'Lord Ganesha Idol',
-      category: 'deities',
-    },
-    {
-      id: '12',
-      src: '/images/gallery/celebration4.jpg',
-      alt: 'Janmashtami Celebration',
-      category: 'celebrations',
-    },
-  ];
-  
-  // Get unique categories
-  const categories = ['all', ...Array.from(new Set(images.map(img => img.category)))];
-  
-  // Filter images based on selected category
-  const filteredImages = filter === 'all' 
-    ? images 
-    : images.filter(img => img.category === filter);
+  const [galleryImages, setGalleryImages] = useState<any[]>([])
+  const [modalImages, setModalImages] = useState<Array<{ src: string, alt: string }>>([])
 
+  useEffect(() => {
+    fetchImageGalleryData()
+  }, [])
+
+  const fetchImageGalleryData = async () => {
+    const data = await axiosInstance.get(`gallery-groups?${galleryGroupQS()}`)
+    const formatedData = formateGalleryData(data.data.data)
+    setGalleryImages(formatedData ?? [])
+  }
+
+  const formateGalleryData = (galleryData: any[]) => {
+    return galleryData.map((item: any) => {
+      return {
+        id: item.id,
+        src: `${process.env.NEXT_PUBLIC_STRAPI_BASE}${item.thumbnail.url}`,
+        title: item.title,
+        category: item.group_key,
+      }
+    })
+  }
+
+  const fetchEventImages = async (imageData: GalleryImage) => {
+    const fullImageData = await axiosInstance.get(`gallery-groups?${galleryAllimagesQS(imageData.category)}`)
+    const formatedimageData = fullImageData.data.data.map((ele: { src: string, alt: string }) => ({ src: `${process.env.NEXT_PUBLIC_STRAPI_BASE}${ele.src}`, alt: ele.alt }))
+    setModalImages(formatedimageData)
+    setSelectedImage(imageData)
+  }
   return (
     <>
       <Navbar />
-      
+
       {/* Page Header */}
       <div className="bg-primary text-on-primary py-12">
         <div className="container mx-auto px-4 text-center">
@@ -114,39 +61,49 @@ export default function Gallery() {
           </p>
         </div>
       </div>
-      
+
       {/* Gallery Section */}
       <section className="py-12">
         <div className="container mx-auto px-4">
           {/* Category Filter */}
-          <div className="mb-8 flex flex-wrap justify-center gap-2">
+          {/* <div className="mb-8 flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setFilter(category)}
-                className={`px-4 py-2 rounded-full ${
-                  filter === category
-                    ? 'bg-primary text-on-primary'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
+                className={`px-4 py-2 rounded-full ${filter === category
+                  ? 'bg-primary text-on-primary'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
               >
                 {category.charAt(0).toUpperCase() + category.slice(1)}
               </button>
             ))}
-          </div>
-          
+          </div> */}
+
           {/* Image Grid */}
-          {filteredImages.length > 0 ? (
+          {galleryImages.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {filteredImages.map((image) => (
-                <div 
-                  key={image.id} 
-                  className="h-64 cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow bg-primary-light flex items-center justify-center"
-                  onClick={() => setSelectedImage(image)}
-                >
-                  <span className="text-primary font-medium">{image.alt}</span>
-                </div>
-              ))}
+              {galleryImages.map((image) => {
+                return (
+                  <div
+                    key={image.id}
+                    className="h-64 cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow relative"
+                    onClick={() => fetchEventImages(image)}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 text-center">
+                      <span className="font-medium">{image.title}</span>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           ) : (
             <div className="text-center py-12">
@@ -155,12 +112,12 @@ export default function Gallery() {
           )}
         </div>
       </section>
-      
+
       {/* Image Modal */}
-      {selectedImage && (
+      {modalImages.length > 0 && selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl">
-            <button 
+            <button
               onClick={() => setSelectedImage(null)}
               className="absolute -top-12 right-0 text-white hover:text-gray-300"
               aria-label="Close modal"
@@ -169,18 +126,18 @@ export default function Gallery() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            
-            <div className="h-[70vh] bg-primary-light flex items-center justify-center">
-              <span className="text-primary text-xl font-medium">{selectedImage.alt}</span>
+
+            <div className="h-[70vh] relative backdrop-blur-3xl">
+              <ImageCarousel images={modalImages} />
             </div>
-            
+
             <div className="bg-white p-4 text-center">
-              <p className="text-lg font-medium">{selectedImage.alt}</p>
+              <p className="text-lg font-medium">{selectedImage.title}</p>
             </div>
           </div>
         </div>
       )}
-      
+
       <Footer />
     </>
   );

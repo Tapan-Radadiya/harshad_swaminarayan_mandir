@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-
+import presidentimage from "@/public/images/leaders/president.png"
+import secretary from "@/public/images/leaders/Secretary.jpg"
+import priest from "@/public/images/leaders/Priest.jpg"
 export default function About() {
   return (
     <>
       <Navbar />
-      
+
       {/* Page Header */}
       <div className="bg-primary text-on-primary py-12">
         <div className="container mx-auto px-4 text-center">
@@ -14,7 +16,7 @@ export default function About() {
           <p className="text-xl max-w-3xl mx-auto">Learn about the history, mission, and values of Harshad Swaminarayan Mandir</p>
         </div>
       </div>
-      
+
       {/* Temple History */}
       <section className="py-12">
         <div className="container mx-auto px-4">
@@ -22,19 +24,19 @@ export default function About() {
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold text-primary mb-4">Our History</h2>
               <p className="text-gray-700 mb-4">
-                Harshad Swaminarayan Mandir was established in 1995 by a group of devoted followers of 
-                Lord Swaminarayan. What began as a small prayer hall has now grown into a vibrant 
+                Harshad Swaminarayan Mandir was established in 1995 by a group of devoted followers of
+                Lord Swaminarayan. What began as a small prayer hall has now grown into a vibrant
                 temple complex serving thousands of devotees.
               </p>
               <p className="text-gray-700 mb-4">
-                The temple was inaugurated on May 15, 1995, with a grand ceremony attended by 
-                spiritual leaders and hundreds of devotees. Over the years, the temple has expanded 
-                its facilities to include a main prayer hall, community center, dining hall, and 
+                The temple was inaugurated on May 15, 1995, with a grand ceremony attended by
+                spiritual leaders and hundreds of devotees. Over the years, the temple has expanded
+                its facilities to include a main prayer hall, community center, dining hall, and
                 classrooms for religious education.
               </p>
               <p className="text-gray-700">
-                Today, Harshad Swaminarayan Mandir stands as a testament to the devotion and hard work 
-                of our community members who have contributed their time, resources, and energy to 
+                Today, Harshad Swaminarayan Mandir stands as a testament to the devotion and hard work
+                of our community members who have contributed their time, resources, and energy to
                 create this sacred space.
               </p>
             </div>
@@ -44,12 +46,12 @@ export default function About() {
           </div>
         </div>
       </section>
-      
+
       {/* Mission and Values */}
       <section className="py-12 bg-primary-light">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-primary mb-8">Our Mission & Values</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-primary mb-4">
@@ -59,11 +61,11 @@ export default function About() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Spiritual Growth</h3>
               <p className="text-gray-700">
-                We are committed to providing a nurturing environment for spiritual growth through 
+                We are committed to providing a nurturing environment for spiritual growth through
                 regular worship, meditation, and scriptural study.
               </p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-primary mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,11 +74,11 @@ export default function About() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Community Service</h3>
               <p className="text-gray-700">
-                We believe in serving the broader community through charitable activities, food 
+                We believe in serving the broader community through charitable activities, food
                 distribution, and support for those in need.
               </p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-primary mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,48 +87,60 @@ export default function About() {
               </div>
               <h3 className="text-xl font-semibold mb-3">Cultural Preservation</h3>
               <p className="text-gray-700">
-                We are dedicated to preserving and promoting Hindu culture, traditions, and values 
+                We are dedicated to preserving and promoting Hindu culture, traditions, and values
                 through education, arts, and celebrations.
               </p>
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Temple Leadership */}
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-primary mb-8">Temple Leadership</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Replace with actual temple leaders */}
             <div className="text-center">
               <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
-                <span className="text-primary font-medium">Head Priest</span>
+                <Image
+                  src={priest}
+                  alt='Priest Image'
+                  className='object-cover'
+                />
               </div>
-              <h3 className="text-xl font-semibold">Swami Hariprasad</h3>
+              <h3 className="text-xl font-semibold">Ghanshyam Dada</h3>
               <p className="text-gray-600">Head Priest</p>
             </div>
-            
+
             <div className="text-center">
               <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
-                <span className="text-primary font-medium">Temple President</span>
+                <Image
+                  src={presidentimage}
+                  alt='President Image'
+                  className='object-cover'
+                />
               </div>
-              <h3 className="text-xl font-semibold">Rajesh Patel</h3>
+              <h3 className="text-xl font-semibold">Sudhir Bhanderi</h3>
               <p className="text-gray-600">Temple President</p>
             </div>
-            
+
             <div className="text-center">
               <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
-                <span className="text-primary font-medium">Temple Secretary</span>
+                <Image
+                  src={secretary}
+                  alt='President Image'
+                  className='object-cover'
+                />
               </div>
-              <h3 className="text-xl font-semibold">Anjali Sharma</h3>
+              <h3 className="text-xl font-semibold">Das Dada</h3>
               <p className="text-gray-600">Temple Secretary</p>
             </div>
           </div>
         </div>
       </section>
-      
+
       <Footer />
     </>
   );
