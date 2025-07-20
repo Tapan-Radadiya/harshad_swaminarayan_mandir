@@ -12,3 +12,20 @@ export const getAllEventDataQS = (locale: string) => qs.stringify({
 }, {
     encodeValuesOnly: true
 })
+
+
+export const getEventDetailsQS = (event_slug: string, locale: string) => qs.stringify({
+    locale: locale ?? 'en',
+    filters: {
+        slug: {
+            $eq: event_slug
+        }
+    },
+    populate: {
+        images: {
+            fields: ['id', 'url', 'alternativeText']
+        }
+    }
+}, {
+    encodeValuesOnly: true
+})

@@ -12,9 +12,10 @@ interface EventCardProps {
     url: string,
     alternativeText: string
   };
+  slug: string
 }
 
-const EventCard = ({ id, title, event_date, description, image }: EventCardProps) => {
+const EventCard = ({ id, title, event_date, description, image, slug }: EventCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       {image && (
@@ -40,7 +41,7 @@ const EventCard = ({ id, title, event_date, description, image }: EventCardProps
 
         <p className="text-gray-700 mb-4 line-clamp-3">{description}</p>
 
-        <Link href={`/events/${id}`} className="inline-block bg-primary text-on-primary px-4 py-2 rounded hover:bg-primary-dark transition">
+        <Link href={`/events/${slug}`} className="inline-block bg-primary text-on-primary px-4 py-2 rounded hover:bg-primary-dark transition">
           Learn More
         </Link>
       </div>

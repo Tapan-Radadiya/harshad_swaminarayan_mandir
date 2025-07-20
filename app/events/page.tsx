@@ -35,9 +35,20 @@ export default function Events() {
     setEvents(eventData)
     setFilteredEvents(eventData)
   }
+  useEffect(() => {
+    setFilterData()
+  }, [filter])
+
+  const setFilterData = async () => {
+    if (filter != 'all') {
+      const filterdData = events.filter((ele) => ele.event_type === filter)
+      setFilteredEvents(filterdData)
+    } else {
+      setFilteredEvents(events)
+    }
+  }
   // Get unique categories
   const categories = ['all', ...Array.from(new Set(events.map(event => event.event_type)))];
-  // Filter events based on selected category
   return (
     <>
       <Navbar />
