@@ -73,7 +73,7 @@ export default function Home() {
     if (carouselImageData.length !== 0) {
       const formatedData = carouselImageData.map((ele) => {
         return {
-          src: `${process.env.NEXT_PUBLIC_STRAPI_BASE}${ele.images.url}`,
+          src: `${ele.images.url}`,
           alt: 'carousel Image'
         }
       })
@@ -82,7 +82,6 @@ export default function Home() {
       return []
     }
   }
-
   return (
     <>
       <Navbar />

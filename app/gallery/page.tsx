@@ -35,7 +35,7 @@ export default function Gallery() {
     return galleryData.map((item: any) => {
       return {
         id: item.id,
-        src: `${process.env.NEXT_PUBLIC_STRAPI_BASE}${item.thumbnail.url}`,
+        src: `${item.thumbnail.url}`,
         title: item.title,
         category: item.group_key,
       }
@@ -44,7 +44,7 @@ export default function Gallery() {
 
   const fetchEventImages = async (imageData: GalleryImage) => {
     const fullImageData = await axiosInstance.get(`gallery-groups?${galleryAllimagesQS(imageData.category)}`)
-    const formatedimageData = fullImageData.data.data.map((ele: { src: string, alt: string }) => ({ src: `${process.env.NEXT_PUBLIC_STRAPI_BASE}${ele.src}`, alt: ele.alt }))
+    const formatedimageData = fullImageData.data.data.map((ele: { src: string, alt: string }) => ({ src: `${ele.src}`, alt: ele.alt }))
     setModalImages(formatedimageData)
     setSelectedImage(imageData)
   }

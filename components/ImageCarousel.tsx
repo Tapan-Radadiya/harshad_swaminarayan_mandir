@@ -30,22 +30,24 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
 
   return (
     <div className="relative w-full h-[600px] overflow-hidden">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-        >
-          <Image 
-            src={image.src}
-            alt={image.alt}
-            fill
-            className="object-contain"
-            priority={index === 0}
-            sizes="100vw"
-          />
-        </div>
-      ))}
+      {images.map((image, index) => {
+        return (
+          <div
+            key={index}
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              className="object-contain"
+              priority={index === 0}
+              sizes="100vw"
+            />
+          </div>
+        )
+      })}
 
       <button
         onClick={goToPrevious}

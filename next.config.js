@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images:{
+  images: {
     domains: ['localhost'],
-    remotePatterns:[
+    remotePatterns: [
       {
-        protocol:'http',
-        hostname:'localhost',
-        port:'3000',
+        protocol: 'https',
+        hostname: 'harshad-swaminarayan-mandir.s3.ap-south-1.amazonaws.com',
+        port: '',
         pathname: '/**'
       }
     ]
