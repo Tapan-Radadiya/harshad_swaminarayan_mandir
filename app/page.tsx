@@ -17,7 +17,7 @@ export default function Home() {
   const { t, locale } = useLanguage();
   const [events, setEvents] = useState<any[]>([])
   const [carouselImages, setcarouselImages] = useState<any[]>([])
-  const [coverImage, setCoverImage] = useState<{ src: string, alt: '' }>({ src: '', alt: '' })
+  const [coverImage, setCoverImage] = useState<{ src: string, alt: string }>({ src: '', alt: '' })
 
   useEffect(() => {
     // In a real app, fetch this data from an API
@@ -70,13 +70,16 @@ export default function Home() {
       <div className="relative h-[400px] sm:h-[500px] lg:h-[800px] w-full">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
-            src={coverImage.src}
-            alt={coverImage.alt}
-            fill
-            className="object-fit brightness-75"
-            priority
-          />
+          {
+            coverImage.src != '' &&
+            <Image
+              src={coverImage.src}
+              alt={coverImage.alt}
+              fill
+              className="object-fit brightness-75"
+              priority
+            />
+          }
         </div>
         {/* Content Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4 z-10">
@@ -104,7 +107,9 @@ export default function Home() {
       <section className="py-8 sm:py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-6 sm:mb-8">{t('home.gallery')}</h2>
-          <ImageCarousel images={carouselImages} />
+          {carouselImages.length > 0 &&
+            <ImageCarousel images={carouselImages} />
+          }
           <div className="text-center mt-4 sm:mt-6">
             <Link href="/gallery" className="inline-block text-primary font-medium hover:underline text-sm sm:text-base">
               {t('home.viewGallery')} →
@@ -117,13 +122,15 @@ export default function Home() {
       <section className="py-12 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-primary mb-8">{t('home.events')}</h2>
-          {/* 
+
           {events.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {events.slice(0, 3).map((event) => (
-                  <EventCard key={event.id} {...event} />
-                ))}
+                {events.slice(0, 3).map((event) => {
+                  return (
+                    <EventCard key={event.id} {...event} image={event?.images.length > 0 && event.images[0]} />
+                  )
+                })}
               </div>
 
               <div className="text-center mt-8">
@@ -134,7 +141,7 @@ export default function Home() {
             </>
           ) : (
             <p className="text-center text-gray-600">{t('home.noEvents')}</p>
-          )} */}
+          )}
         </div>
       </section>
 

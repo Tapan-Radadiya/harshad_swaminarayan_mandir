@@ -73,7 +73,7 @@ const EventImageGrid = ({ images }: EventImageGridProps) => {
                 selectedImage && (
                   <div className="h-[60vh] sm:h-[70vh] relative bg-black rounded-lg overflow-hidden">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_BASE}${selectedImage.url}`}
+                      src={`${selectedImage.url}`}
                       alt={selectedImage.alternativeText || 'Event image'}
                       fill
                       className="object-contain"
