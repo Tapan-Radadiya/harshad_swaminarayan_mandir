@@ -9,15 +9,6 @@ import { getAllEventDataQS } from '@/assets/queryString/event.qs';
 import { useLanguage } from '../context/LanguageContext';
 
 // Mock data - in a real app, this would come from an API
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  description: string;
-  image?: string;
-  category: string;
-}
 
 export default function Events() {
   const [filter, setFilter] = useState('all');

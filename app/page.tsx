@@ -2,72 +2,52 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ImageCarousel from '../components/ImageCarousel';
 import EventCard from '../components/EventCard';
 import { useLanguage } from './context/LanguageContext';
 import axiosInstance from '@/assets/config/axios.config';
-import { carouselQS } from '@/assets/queryString/carousel.qs';
+import { carouselQS, coverImageQS } from '@/assets/queryString/carousel.qs';
+import { getAllEventDataQS } from '@/assets/queryString/event.qs';
 
-// Mock data - in a real app, this would come from an API
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  time: string;
-  description: string;
-  image?: string;
-}
 
 export default function Home() {
-  const { t } = useLanguage();
-  const [events, setEvents] = useState<Event[]>([]);
+  const { t, locale } = useLanguage();
+  const [events, setEvents] = useState<any[]>([])
   const [carouselImages, setcarouselImages] = useState<any[]>([])
+  const [coverImage, setCoverImage] = useState<{ src: string, alt: '' }>({ src: '', alt: '' })
+
   useEffect(() => {
     // In a real app, fetch this data from an API
-    const mockEvents: Event[] = [
-      {
-        id: '1',
-        title: 'Diwali Celebration',
-        date: 'November 12, 2023',
-        time: '6:00 PM - 10:00 PM',
-        description: 'Join us for a special Diwali celebration with prayers, lighting of diyas, cultural performances, and prasad.',
-        image: '/images/events/diwali.jpg',
-      },
-      {
-        id: '2',
-        title: 'Weekly Bhajan Session',
-        date: 'Every Sunday',
-        time: '10:00 AM - 12:00 PM',
-        description: 'Weekly devotional singing session led by our temple musicians.',
-        image: '/images/events/bhajan.jpg',
-      },
-      {
-        id: '3',
-        title: 'Janmashtami Celebration',
-        date: 'August 19, 2023',
-        time: '7:00 PM - 12:00 AM',
-        description: 'Celebrate the birth of Lord Krishna with prayers, bhajans, and midnight aarti.',
-        image: '/images/events/janmashtami.jpg',
-      },
-    ];
-
-    setEvents(mockEvents);
   }, []);
 
 
   useEffect(() => {
+    fetchCoverImage()
     fetchCarouselData()
+    fetchEventData()
   }, [])
 
 
-  const fetchCarouselData = async () => {
+  const fetchCarouselData = useCallback(async () => {
     const data = await axiosInstance.get(`/image-managers?${carouselQS()}`)
     const formatedData = formatStrapiResponse(data.data.data)
     setcarouselImages(formatedData)
-  }
+  }, [])
+
+  const fetchCoverImage = useCallback(async () => {
+    const data = await axiosInstance.get(`/image-managers?${coverImageQS()}`)
+    const formatedData: any[] = formatStrapiResponse(data.data.data)
+    setCoverImage(formatedData.length > 0 ? formatedData[0] : [])
+  }, [])
+
+  const fetchEventData = useCallback(async () => {
+    const data = await axiosInstance.get(`mandir-events?${getAllEventDataQS(locale)}`)
+    const eventData = data.data.data
+    setEvents(eventData)
+  }, [])
 
   const formatStrapiResponse = (carouselImageData: any[]) => {
     if (carouselImageData.length !== 0) {
@@ -87,14 +67,14 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full">
+      <div className="relative h-[400px] sm:h-[500px] lg:h-[800px] w-full">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="http://localhost:1337/uploads/102966478_111193160622382_7960235014233260032_n_05f9c9c820.jpg"
-            alt="Harshad Swaminarayan Mandir"
+            src={coverImage.src}
+            alt={coverImage.alt}
             fill
-            className="object-cover brightness-75"
+            className="object-fit brightness-75"
             priority
           />
         </div>
@@ -137,8 +117,8 @@ export default function Home() {
       <section className="py-12 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-primary mb-8">{t('home.events')}</h2>
-
-          {/* {events.length > 0 ? (
+          {/* 
+          {events.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {events.slice(0, 3).map((event) => (

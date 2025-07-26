@@ -4,11 +4,21 @@ import qs from "qs";
 export const galleryGroupQS = () => qs.stringify({
     mode: "thumbnail",
     filters: {
-        group_key: {
-            $not: {
-                $eq: "carousel"
-            }
-        }
+        $and: [
+            {
+                group_key: {
+                    $not: {
+                        $eq: "carousel"
+                    }
+                },
+            },
+            {
+                group_key: {
+                    $not: {
+                        $eq: "cover_image"
+                    }
+                },
+            }]
     },
     sort: ['createdAt:desc'],
     populate: {

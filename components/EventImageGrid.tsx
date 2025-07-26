@@ -45,7 +45,7 @@ const EventImageGrid = ({ images }: EventImageGridProps) => {
             }}
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_STRAPI_BASE}${image.url}`}
+              src={`${image.url}`}
               alt={image.alternativeText || 'Event image'}
               fill
               className="object-cover hover:scale-105 transition-transform duration-300"

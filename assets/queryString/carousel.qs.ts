@@ -20,3 +20,24 @@ export const carouselQS = () => qs.stringify({
         }
     }
 }, { encodeValuesOnly: true })
+
+export const coverImageQS = () => qs.stringify({
+    filters: {
+        image_type: {
+            $eq: "section_banner"
+        },
+        is_active: {
+            $eq: true
+        }
+    },
+    sort: ['priority:asc'],
+    fields: ['id', 'priority'],
+    populate: {
+        images: {
+            fields: ['url', 'name']
+        },
+        gallery_group: {
+            fields: ['group_key']
+        }
+    }
+})

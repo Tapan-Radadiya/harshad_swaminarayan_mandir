@@ -21,10 +21,10 @@ const EventCard = ({ id, title, event_date, description, image, slug }: EventCar
       {image && (
         <div className="h-48 w-full relative overflow-hidden">
           <Image
-            src={`${process.env.NEXT_PUBLIC_STRAPI_BASE}${image.url}`}
+            src={`${image.url}`}
             alt={image.alternativeText || title}
             fill
-            className="object-cover"
+            className="object-fit"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
