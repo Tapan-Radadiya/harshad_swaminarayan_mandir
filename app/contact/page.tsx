@@ -12,7 +12,7 @@ export default function Contact() {
     subject: '',
     message: '',
   });
-  
+
   const [formStatus, setFormStatus] = useState<{
     submitted: boolean;
     success: boolean;
@@ -29,17 +29,15 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // In a real app, you would send this data to your backend
-    console.log('Form submitted:', formData);
-    
     // Simulate form submission
     setFormStatus({
       submitted: true,
-      success: true,
-      message: 'Thank you for your message. We will get back to you soon!',
+      success: false,
+      message: 'At This Time , We Are Not Accepting New Inquiries. Please Check Back Later.',
     });
-    
+
     // Reset form
     setFormData({
       name: '',
@@ -53,7 +51,7 @@ export default function Contact() {
   return (
     <>
       <Navbar />
-      
+
       {/* Page Header */}
       <div className="bg-primary text-on-primary py-12">
         <div className="container mx-auto px-4 text-center">
@@ -63,7 +61,7 @@ export default function Contact() {
           </p>
         </div>
       </div>
-      
+
       {/* Contact Section */}
       <section className="py-12">
         <div className="container mx-auto px-4">
@@ -71,7 +69,7 @@ export default function Contact() {
             {/* Contact Information */}
             <div>
               <h2 className="text-3xl font-bold text-primary mb-6">Temple Information</h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="bg-primary-light p-3 rounded-full mr-4">
@@ -83,13 +81,12 @@ export default function Contact() {
                   <div>
                     <h3 className="text-xl font-semibold mb-1">Address</h3>
                     <p className="text-gray-700">
-                      123 Temple Street<br />
-                      City, State 12345<br />
-                      Country
+                      Shree swaminarayan mandir harshad colony part-2,<br />
+                      opp D-mart lane Bapunagar<br />
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="bg-primary-light p-3 rounded-full mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,11 +95,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-1">Phone</h3>
-                    <p className="text-gray-700">(123) 456-7890</p>
-                    <p className="text-gray-700">(098) 765-4321 (Office)</p>
+                    <p className="text-gray-700">+91 97262 68111</p>
+                    {/* <p className="text-gray-700">(098) 765-4321 (Office)</p> */}
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="bg-primary-light p-3 rounded-full mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -111,11 +108,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-1">Email</h3>
-                    <p className="text-gray-700">info@harshadmandir.org</p>
-                    <p className="text-gray-700">events@harshadmandir.org</p>
+                    <p className="text-gray-700">harshadcolonybapunagar@gmail.com</p>
+                    {/* <p className="text-gray-700"></p> */}
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="bg-primary-light p-3 rounded-full mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,29 +127,48 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Map */}
               <div className="mt-8">
                 <h3 className="text-xl font-semibold mb-4">Find Us</h3>
-                <div className="h-80 bg-gray-200 rounded-lg">
-                  {/* Replace with actual map embed code */}
-                  <div className="w-full h-full flex items-center justify-center text-gray-500">
-                    <p>Google Maps Embed will appear here</p>
-                  </div>
+                <div className="h-80 bg-gray-200 rounded-lg overflow-hidden">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d680.0700134113484!2d72.63690051775554!3d23.044652896525292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e86953df667d3%3A0x5995d514917698b9!2sShri%20Swaminarayan%20Temple!5e1!3m2!1sen!2sin!4v1753514750580!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Harshad Swaminarayan Mandir Location"
+                  ></iframe>
+                </div>
+                <div className="mt-4">
+                  <a
+                    href="https://maps.app.goo.gl/fhuz9nvQrGY5qwCd7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary hover:text-primary-dark font-medium"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    Open in Google Maps
+                  </a>
                 </div>
               </div>
             </div>
-            
+
             {/* Contact Form */}
             <div>
               <h2 className="text-3xl font-bold text-primary mb-6">Send Us a Message</h2>
-              
+
               {formStatus && (
                 <div className={`p-4 mb-6 rounded-md ${formStatus.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                   {formStatus.message}
                 </div>
               )}
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Your Name *</label>
@@ -166,7 +182,7 @@ export default function Contact() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email Address *</label>
@@ -180,7 +196,7 @@ export default function Contact() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">Phone Number</label>
                     <input
@@ -193,7 +209,7 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">Subject *</label>
                   <select
@@ -213,7 +229,7 @@ export default function Contact() {
                     <option value="Other">Other</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Your Message *</label>
                   <textarea
@@ -226,7 +242,7 @@ export default function Contact() {
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   ></textarea>
                 </div>
-                
+
                 <div>
                   <button
                     type="submit"
@@ -240,7 +256,7 @@ export default function Contact() {
           </div>
         </div>
       </section>
-      
+
       <Footer />
     </>
   );

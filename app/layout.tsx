@@ -5,6 +5,11 @@ import { LanguageProvider } from "./context/LanguageContext";
 export const metadata: Metadata = {
   title: "Harshad Swaminarayan Mandir",
   description: "Official website of Harshad Swaminarayan Mandir - A place for spiritual growth, community, and devotion",
+  icons: {
+    icon: '/mandir_logo.ico',
+    shortcut: '/mandir_logo.ico',
+    apple: '/mandir_logo.ico',
+  },
 };
 
 export default function RootLayout({

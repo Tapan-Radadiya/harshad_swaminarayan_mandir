@@ -6,6 +6,9 @@ import secretary from "@/public/images/leaders/Secretary.jpg"
 import priest from "@/public/images/leaders/Priest2.jpg"
 import yuvakMandal from "@/public/images/leaders/yuvak_manadl.jpg"
 import mahilaMandal from "@/public/images/leaders/mahila_mandal.jpg"
+import vrajendraPrasadJi from "@/public/images/leaders/VrajendraPrasad_ji_Maharaj.jpg"
+import koshalendraprasadjit from "@/public/images/leaders/koshalendraprasadjit.jpg"
+import tejendraprasadji from "@/public/images/leaders/tejendraprasadji.jpg"
 export default function About() {
   return (
     <>
@@ -42,9 +45,9 @@ export default function About() {
                 create this sacred space.
               </p>
             </div>
-            <div className="md:w-1/2 h-80 w-full bg-primary-light rounded-lg flex items-center justify-center">
+            {/* <div className="md:w-1/2 h-80 w-full bg-primary-light rounded-lg flex items-center justify-center">
               <span className="text-primary text-xl font-medium">Temple History Image</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -104,39 +107,45 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Replace with actual temple leaders */}
             <div className="text-center">
-              <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-64 mx-auto mb-4 rounded-full overflow-hidden bg-primary-light select-none">
                 <Image
-                  src={priest}
+                  src={vrajendraPrasadJi}
                   alt='Priest Image'
-                  className='object-cover'
+                  width={256}
+                  height={256}
+                  className='object-cover w-full h-full pointer-events-none'
+                  draggable={false}
                 />
               </div>
-              <h3 className="text-xl font-semibold">Ghanshyam Dada</h3>
-              {/* <p className="text-gray-600">Head Priest</p> */}
+              <h3 className="text-xl mt-3 font-semibold">Vrajendra prasad Pande</h3>
             </div>
 
             <div className="text-center">
-              <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-64 mx-auto mb-4 rounded-full overflow-hidden bg-primary-light select-none">
                 <Image
-                  src={presidentimage}
+                  src={koshalendraprasadjit}
                   alt='President Image'
-                  className='object-cover'
+                  width={256}
+                  height={256}
+                  className='object-cover w-full h-full pointer-events-none'
+                  draggable={false}
                 />
               </div>
-              <h3 className="text-xl font-semibold">Sudhir Bhanderi</h3>
-              {/* <p className="text-gray-600">Temple President</p> */}
+              <h3 className="text-xl font-semibold">Kaushlendra Prasad pande</h3>
             </div>
 
             <div className="text-center">
-              <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-64 mx-auto mb-4 rounded-full overflow-hidden bg-primary-light select-none">
                 <Image
-                  src={secretary}
+                  src={tejendraprasadji}
                   alt='President Image'
-                  className='object-cover'
+                  width={256}
+                  height={256}
+                  className='object-cover w-full h-full pointer-events-none'
+                  draggable={false}
                 />
               </div>
-              <h3 className="text-xl font-semibold">Das Dada</h3>
-              {/* <p className="text-gray-600">Temple Secretary</p> */}
+              <h3 className="text-xl font-semibold">Tejendra prasad pande</h3>
             </div>
           </div>
         </div>
@@ -150,11 +159,14 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Replace with actual temple leaders */}
             <div className="text-center">
-              <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-64 mx-auto mb-4 rounded-full overflow-hidden bg-primary-light select-none">
                 <Image
                   src={priest}
                   alt='Priest Image'
-                  className='object-cover'
+                  width={256}
+                  height={256}
+                  className='object-cover w-full h-full pointer-events-none'
+                  draggable={false}
                 />
               </div>
               <h3 className="text-xl font-semibold">Ghanshyam Dada</h3>
@@ -162,11 +174,14 @@ export default function About() {
             </div>
 
             <div className="text-center">
-              <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-64 mx-auto mb-4 rounded-full overflow-hidden bg-primary-light select-none">
                 <Image
                   src={presidentimage}
                   alt='President Image'
-                  className='object-cover'
+                  width={256}
+                  height={256}
+                  className='object-cover w-full h-full pointer-events-none'
+                  draggable={false}
                 />
               </div>
               <h3 className="text-xl font-semibold">Sudhir Bhanderi</h3>
@@ -174,11 +189,14 @@ export default function About() {
             </div>
 
             <div className="text-center">
-              <div className="h-64 w-64 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-64 mx-auto mb-4 rounded-full overflow-hidden bg-primary-light select-none">
                 <Image
                   src={secretary}
                   alt='President Image'
-                  className='object-cover'
+                  width={256}
+                  height={256}
+                  className='object-cover w-full h-full pointer-events-none'
+                  draggable={false}
                 />
               </div>
               <h3 className="text-xl font-semibold">Das Dada</h3>
@@ -195,27 +213,33 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {/* Replace with actual temple leaders */}
             <div className="text-center">
-              <div className="h-80 w-80 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-80 mx-auto mb-4 rounded-lg overflow-hidden bg-primary-light select-none">
                 <Image
                   src={yuvakMandal}
-                  alt='Priest Image'
-                  className='object-cover'
+                  alt='Yuvak Mandal Image'
+                  width={320}
+                  height={320}
+                  className='object-contain w-full h-full pointer-events-none'
+                  priority
+                  draggable={false}
                 />
               </div>
               <h3 className="text-xl font-semibold">Yuvak Mandal</h3>
-              {/* <p className="text-gray-600">Head Priest</p> */}
             </div>
 
             <div className="text-center">
-              <div className="h-80 w-80 mx-auto mb-4 rounded-full bg-primary-light flex items-center justify-center">
+              <div className="h-64 w-80 mx-auto mb-4 rounded-lg overflow-hidden bg-primary-light select-none">
                 <Image
                   src={mahilaMandal}
-                  alt='President Image'
-                  className='object-cover'
+                  alt='Mahila Mandal Image'
+                  width={320}
+                  height={320}
+                  className='object-contain w-full h-full pointer-events-none'
+                  priority
+                  draggable={false}
                 />
               </div>
               <h3 className="text-xl font-semibold">Mahila Mandal</h3>
-              {/* <p className="text-gray-600">Temple President</p> */}
             </div>
 
             {/* <div className="text-center">

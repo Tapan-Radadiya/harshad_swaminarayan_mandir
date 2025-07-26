@@ -53,17 +53,17 @@ export default function Gallery() {
       <Navbar />
 
       {/* Page Header */}
-      <div className="bg-primary text-on-primary py-12">
+      <div className="bg-primary text-on-primary py-8 sm:py-12">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">Temple Gallery</h1>
-          <p className="text-xl max-w-3xl mx-auto">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Temple Gallery</h1>
+          <p className="text-lg sm:text-xl max-w-3xl mx-auto px-2">
             Explore beautiful images of our temple, deities, and celebrations
           </p>
         </div>
       </div>
 
       {/* Gallery Section */}
-      <section className="py-12">
+      <section className="py-8 sm:py-12">
         <div className="container mx-auto px-4">
           {/* Category Filter */}
           {/* <div className="mb-8 flex flex-wrap justify-center gap-2">
@@ -83,12 +83,12 @@ export default function Gallery() {
 
           {/* Image Grid */}
           {galleryImages.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {galleryImages.map((image) => {
                 return (
                   <div
                     key={image.id}
-                    className="h-64 cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow relative"
+                    className="h-48 sm:h-56 md:h-64 cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow relative"
                     onClick={() => fetchEventImages(image)}
                   >
                     <Image
