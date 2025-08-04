@@ -32,14 +32,17 @@ export default function Gallery() {
   }
 
   const formateGalleryData = (galleryData: any[]) => {
-    return galleryData.map((item: any) => {
-      return {
-        id: item.id,
-        src: `${item.thumbnail.url}`,
-        title: item.title,
-        category: item.group_key,
-      }
-    })
+    if (galleryData.length > 0) {
+      return galleryData.map((item: any) => {
+        return {
+          id: item.id,
+          src: `${item?.thumbnail?.url}`,
+          title: item.title,
+          category: item.group_key,
+        }
+      })
+    }
+    else { return [] }
   }
 
   const fetchEventImages = async (imageData: GalleryImage) => {
